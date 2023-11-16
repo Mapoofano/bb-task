@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const getUserAddresses = async () => {
-  const { data, status } = await axios.get(`${baseURL}/my-addresses/`);
+  const { data, status, headers } = await axios.get(`${baseURL}/my-addresses/`);
+  console.log(headers)
   return status === 200 ? data : [];
 };
 

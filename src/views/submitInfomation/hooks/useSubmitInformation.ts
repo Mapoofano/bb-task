@@ -14,6 +14,7 @@ const submitInformation = (data: SaveOrderRequest) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    withCredentials: true
   });
 };
 
