@@ -1,6 +1,7 @@
 import { baseURL } from '@/store/store';
+import { axiosInstance } from '@/utils/axios';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface SaveOrderRequest {
   nationalId: string;
@@ -9,21 +10,18 @@ interface SaveOrderRequest {
 }
 
 const submitInformation = (data: SaveOrderRequest) => {
-  console.log(data);
-  return axios.post(`${baseURL}/order/completion/`, data, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    withCredentials: true
-  });
+  return axiosInstance.post(`${baseURL}/order/completion/`, data);
 };
 
 const useSubmitInformation = () => {
+  const { push } = useRouter();
+
   return useMutation({
     mutationFn: (data: SaveOrderRequest) => submitInformation(data),
     retry: 5,
     onSuccess: () => {
       //   queryClient.invalidateQueries({ queryKey: ['balances'] });
+      push('/confirmation/success');
     },
   });
 };

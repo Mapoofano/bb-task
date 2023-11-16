@@ -19,7 +19,7 @@ const Input = ({ errorMessage, ...props }: Props) => {
         } rounded-sm`}
         {...props}
       />
-      <span className="text-red-500 text-xs my-1">{errorMessage}</span>
+      <span className="text-red-500 text-xs my-1 h-2">{errorMessage}</span>
     </div>
   );
 };

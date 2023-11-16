@@ -1,10 +1,9 @@
 import { baseURL } from '@/store/store';
+import { axiosInstance } from '@/utils/axios';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 const getUserAddresses = async () => {
-  const { data, status, headers } = await axios.get(`${baseURL}/my-addresses/`);
-  console.log(headers)
+  const { data, status } = await axiosInstance.get(`${baseURL}/my-addresses/`);
   return status === 200 ? data : [];
 };
 
